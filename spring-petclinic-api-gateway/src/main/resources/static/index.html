@@ -78,11 +78,11 @@
 <!-- JavaScript for handling chatbox interaction -->
 <script>
 
-    // Call loadChatMessages when the page loads
-    window.onload = loadChatMessages;
-
-    // Ensure messages are saved when navigating away
-    window.onbeforeunload = saveChatMessages;
+    // Chat is session-only: start fresh on every page load (refresh clears it).
+    // Clear any chat history persisted by older builds so it is not restored.
+    window.onload = function () {
+        try { localStorage.removeItem('chatMessages'); } catch (e) {}
+    };
 </script>
 
 
